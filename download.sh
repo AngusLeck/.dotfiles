@@ -17,7 +17,7 @@ if test -d .dotfiles; then
   cd .dotfiles
   git pull -f
 else
-  git clone https://github.com/jtomaszewski/.dotfiles
+  git clone https://github.com/AngusLeck/.dotfiles
   cd .dotfiles
 fi
 ./install.sh
