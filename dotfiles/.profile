@@ -39,6 +39,8 @@ if command -v apt &> /dev/null; then
   alias as="apt search"
 fi
 
+alias a=~/ailo
+
 if command -v docker &> /dev/null; then
   # Short alias for docker command
   alias d='docker'
