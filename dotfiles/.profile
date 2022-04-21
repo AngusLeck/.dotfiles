@@ -36,17 +36,28 @@ fi
 
 export EDITOR=vim
 
-if command -v apt-get &> /dev/null; then
+if command -v apt-get &>/dev/null; then
   alias ai="apt-get install"
 fi
 
-if command -v apt &> /dev/null; then
+if command -v apt &>/dev/null; then
   alias as="apt search"
 fi
 
-alias a=~/ailo
+# go to ailo directory
+alias a='~/ailo'
 
-if command -v docker &> /dev/null; then
+# print today's date-time
+alias now='date +%Y%m%d%H%M%S'
+
+# Pin to the tail of long commands for an audible alert after long processes
+## curl http://downloads.com/hugefile.zip; lmk
+alias lmk="say 'Process complete.'"
+
+# List local ports in use
+alias llp="lsof -P -n | grep ::1"
+
+if command -v docker &>/dev/null; then
   # Short alias for docker command
   alias d='docker'
   # Find container ID by ID or name
@@ -110,9 +121,16 @@ fi
 
 if test -d $HOME/.nvm; then
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 fi
 
 if test -d $HOME/Library/Android/sdk; then
   export ANDROID_SDK=$HOME/Library/Android/sdk
 fi
+
+findandkill() {
+  port=$(lsof -n -i4TCP:$1 | grep LISTEN | awk '{ print $2 }')
+  kill -9 $port
+}
+
+alias killport='findandkill'
